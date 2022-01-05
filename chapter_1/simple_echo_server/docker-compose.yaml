@@ -1,0 +1,7 @@
+version: '3'
+services:
+  simple-server:
+    image: simple-echo-server
+    build: .
+    ports:
+      - 18888:18888
