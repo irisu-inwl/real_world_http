@@ -1,0 +1,22 @@
+version: '3'
+services:
+  simple-server:
+    image: simple-echo-server
+    build: .
+    ports:
+      - 18888:18888
+  get-client:
+    image: get-client
+    build: .
+    # command: "go run client_get.go"
+    command: "go run client_multi_part.go"
+    volumes:
+      - ./src/client_get.go:/opt/myapp/client_get.go
+      - ./src/client_get_with_query.go:/opt/myapp/client_get_with_query.go
+      - ./src/client_post_form.go:/opt/myapp/client_post_form.go
+      - ./src/client_post_method.go:/opt/myapp/client_post_method.go
+      - ./src/client_multi_part.go:/opt/myapp/client_multi_part.go
+    depends_on:
+      - simple-server
+    environment:
+      - HOST=simple-server
