@@ -1,0 +1,5 @@
+## Deployment
+
+```
+docker-compose up
+```

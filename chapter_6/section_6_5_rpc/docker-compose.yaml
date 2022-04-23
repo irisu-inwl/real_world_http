@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    image: go-http
+    build: ../
+    volumes:
+      - ./src/:/opt/myapp/
+    ports:
+      - 18888:18888
+  client:
+    image: go-http
+    build: .
+    command: "go run client.go"
+    volumes:
+      - ./src/:/opt/myapp/
+    depends_on:
+      - server
+    environment:
+      - HOST=server
