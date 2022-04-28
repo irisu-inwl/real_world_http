@@ -1,0 +1,11 @@
+version: '3'
+services:
+    grpc-server:
+        image: grpc_basics_tutorial
+        build: .
+        command: go run greeter_server/main.go
+    
+    grpc-client:
+        image: grpc_basics_tutorial
+        build: .
+        command: bash -c 'sed -ie "s/localhost/grpc-server/" greeter_client/main.go && go run greeter_client/main.go'
